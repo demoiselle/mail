@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE revhistory PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<revhistory>
+	<revision>
+		<revnumber>2.0.1</revnumber>
+		<date>21/09/2011</date>
+		<authorinitials>tm</authorinitials>
+		<revremark>Correção do bug lançado na issue 709: Quando tento injetar a interface Mail do componente demoiselle-mail, a exceção NullPointerException está sendo lançada.</revremark>
+	</revision>
+	<revision>
+		<revnumber>2.0.0</revnumber>
+		<date>02/06/2011</date>
+		<authorinitials>msc</authorinitials>
+		<revremark>Primeira release da documentação. Atualização para compatibilização com a versão 2.0.0</revremark>
+	</revision>
+</revhistory>
