@@ -66,6 +66,6 @@ ou escreva para a Fundação do Software Livre (FSF) Inc.,
 	</build>
 
 	<properties>
-		<project.context>component/junit/reference</project.context>
+		<project.context>component/mail/reference</project.context>
 	</properties>
 </project>
