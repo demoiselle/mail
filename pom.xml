@@ -47,11 +47,11 @@
 	<parent>
 		<groupId>br.gov.frameworkdemoiselle</groupId>
 		<artifactId>demoiselle-component-build-parent</artifactId>
-		<version>1</version>
-		<relativePath>../internal/parent/build/component/pom.xml</relativePath>
+		<relativePath>../internal/parent/build/component</relativePath>
+		<version>9-SNAPSHOT</version>
 	</parent>
 
-	<name>Build Aggregator</name>
+	<name>Demoiselle Mail Build Aggregator</name>
 	<description>
 		A liberação de versões deste componente deve ser feita a partir deste build, que fará automaticamente o build
 		de todos os artefatos com versionamento sincronizado. Jamais gere uma versão deste componente sem utilizar este build.
@@ -59,6 +59,7 @@
 
 	<modules>
 		<module>impl</module>
+		<module>documentation/reference</module>
 	</modules>
 
 	<build>
@@ -77,25 +78,31 @@
 		</plugins>
 	</build>
 
-	<distributionManagement>
+<distributionManagement>
 		<site>
 			<id>demoiselle.sourceforge.net</id>
 			<url>${site.url}</url>
 		</site>
 	</distributionManagement>
 
+	<scm>
+		<connection>scm:git:git@github.com:demoiselle/${project.alias}.git</connection>
+		<developerConnection>scm:git:git@github.com:demoiselle/${project.alias}.git</developerConnection>
+		<url>http://github.com/demoiselle/${project.alias}</url>
+	  <tag>HEAD</tag>
+  </scm>
+
 	<repositories>
 		<repository>
-			<id>demoiselle.sourceforge.net</id>
-			<name>Demoiselle Maven Repository</name>
-			<url>http://demoiselle.sourceforge.net/repository/release</url>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</repository>
 	</repositories>
-
+	
 	<properties>
 		<project.alias>mail</project.alias>
 		<category>Utilitário</category>
-		<project.nextVersion>2.0.3-SNAPSHOT</project.nextVersion>
 	</properties>
 </project>
 
