@@ -59,7 +59,7 @@
 
 	<modules>
 		<module>impl</module>
-		<module>documentation/reference</module>
+		<module>documentation</module>
 	</modules>
 
 	<build>
@@ -103,6 +103,7 @@
 	<properties>
 		<project.alias>mail</project.alias>
 		<category>Utilitário</category>
+		<project.nextVersion>2.0.3-SNAPSHOT</project.nextVersion>
 	</properties>
 </project>
 
