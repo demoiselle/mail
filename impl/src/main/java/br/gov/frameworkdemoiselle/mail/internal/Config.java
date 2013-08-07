@@ -42,7 +42,7 @@ import javax.mail.PasswordAuthentication;
 import br.gov.frameworkdemoiselle.configuration.Configuration;
 import br.gov.frameworkdemoiselle.mail.internal.enums.MailType;
 
-@Configuration(resource = "demoiselle", prefix = "frameworkdemoiselle.mail")
+@Configuration(prefix = "frameworkdemoiselle.mail")
 public class Config {
 
 	private String mailLookupClass;
