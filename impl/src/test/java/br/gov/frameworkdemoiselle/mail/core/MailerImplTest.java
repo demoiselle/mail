@@ -69,373 +69,371 @@ import br.gov.frameworkdemoiselle.mail.internal.enums.RecipientType;
 import br.gov.frameworkdemoiselle.util.Beans;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ Beans.class, LoggerProducer.class })
+@PrepareForTest({Beans.class, LoggerProducer.class})
 public class MailerImplTest {
 
-	@Test
-	public void checkFrom1() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkFrom1() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.addFromAddress(EasyMock.anyObject(InternetAddress.class));
-		PowerMock.expectLastCall().times(1);
+        mailMessage.addFromAddress(EasyMock.anyObject(InternetAddress.class));
+        PowerMock.expectLastCall().times(1);
 
-		PowerMock.replayAll(Beans.class);
+        PowerMock.replayAll(Beans.class);
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.from("from@frameworkdemoiselle.gov.br");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.from("from@frameworkdemoiselle.gov.br");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkFrom2() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkFrom2() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.addFromAddress(EasyMock.anyObject(InternetAddress.class));
-		PowerMock.expectLastCall().times(2);
-		PowerMock.replayAll();
+        mailMessage.addFromAddress(EasyMock.anyObject(InternetAddress.class));
+        PowerMock.expectLastCall().times(2);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.from("from@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.from("from@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkTo() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkTo() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.addToAddress(EasyMock.anyObject(InternetAddress.class));
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
+        mailMessage.addToAddress(EasyMock.anyObject(InternetAddress.class));
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.to("to@frameworkdemoiselle.gov.br");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.to("to@frameworkdemoiselle.gov.br");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkCC() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkCC() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.addCcAddress(EasyMock.anyObject(InternetAddress.class));
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
+        mailMessage.addCcAddress(EasyMock.anyObject(InternetAddress.class));
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.cc("cc@frameworkdemoiselle.gov.br");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.cc("cc@frameworkdemoiselle.gov.br");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkBCC() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkBCC() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.addBccAddress(EasyMock.anyObject(InternetAddress.class));
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
+        mailMessage.addBccAddress(EasyMock.anyObject(InternetAddress.class));
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.bcc("bcc@frameworkdemoiselle.gov.br");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.bcc("bcc@frameworkdemoiselle.gov.br");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkReplyTo() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkReplyTo() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.addReplyToAddress(EasyMock.anyObject(InternetAddress.class));
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
+        mailMessage.addReplyToAddress(EasyMock.anyObject(InternetAddress.class));
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.replyTo("replyto@frameworkdemoiselle.gov.br");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.replyTo("replyto@frameworkdemoiselle.gov.br");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkDeliveryReceipt() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkDeliveryReceipt() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.addDeliveryReceiptAddress(EasyMock.anyObject(InternetAddress.class));
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
+        mailMessage.addDeliveryReceiptAddress(EasyMock.anyObject(InternetAddress.class));
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.deliveryReceipt("delivery@frameworkdemoiselle.gov.br");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.deliveryReceipt("delivery@frameworkdemoiselle.gov.br");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkReadReceipt() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkReadReceipt() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.addReadReceiptAddress(EasyMock.anyObject(InternetAddress.class));
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
+        mailMessage.addReadReceiptAddress(EasyMock.anyObject(InternetAddress.class));
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.readReceipt("read@frameworkdemoiselle.gov.br");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.readReceipt("read@frameworkdemoiselle.gov.br");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkImportance() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkImportance() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.setImportance(MessagePriority.HIGH);
-		PowerMock.expectLastCall().times(1);
+        mailMessage.setImportance(MessagePriority.HIGH);
+        PowerMock.expectLastCall().times(1);
 
-		mailMessage.setImportance(MessagePriority.LOW);
-		PowerMock.expectLastCall().times(1);
+        mailMessage.setImportance(MessagePriority.LOW);
+        PowerMock.expectLastCall().times(1);
 
-		mailMessage.setImportance(MessagePriority.NORMAL);
-		PowerMock.expectLastCall().times(1);
+        mailMessage.setImportance(MessagePriority.NORMAL);
+        PowerMock.expectLastCall().times(1);
 
-		PowerMock.replayAll();
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
 
-		mailer.importance().high();
-		mailer.importance().low();
-		mailer.importance().normal();
+        mailer.importance().high();
+        mailer.importance().low();
+        mailer.importance().normal();
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkSubject() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkSubject() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.setSubject("SUBJECT");
+        mailMessage.setSubject("SUBJECT");
 
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.subject("SUBJECT");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.subject("SUBJECT");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkBodyText() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+    @Test
+    public void checkBodyText() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
 
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
 
-		mailMessage.setTextBody("BODY TEXT");
+        mailMessage.setTextBody("BODY TEXT");
 
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
 
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.body().text("BODY TEXT");
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.body().text("BODY TEXT");
 
-		PowerMock.verifyAll();
-	}
+        PowerMock.verifyAll();
+    }
 
-	@Test
-	public void checkBodyHtml() {
-		PowerMock.mockStatic(Beans.class);
-		EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
-
-		BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
-
-		mailMessage.setHtmlBody("BODY HTML");
-
-		PowerMock.expectLastCall().times(1);
-		PowerMock.replayAll();
-
-		Mail mailer = new MailImpl();
-		Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
-		mailer.body().html("BODY HTML");
-
-		PowerMock.verifyAll();
-	}
-
-	@Test
-	public void sendHtmlEmailWithImportanceHigh() {
-		try {
-			PowerMock.mockStatic(Beans.class);
-			PowerMock.mockStatic(LoggerProducer.class);
-			EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
-			Logger logger = PowerMock.createMock(Logger.class);
-			logger.debug(EasyMock.anyObject(String.class));
-			EasyMock.expectLastCall().anyTimes();
-			logger.info(EasyMock.anyObject(String.class));
-			EasyMock.expectLastCall().anyTimes();
-
-			EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
-			PowerMock.replayAll();
-
-			new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br").body()
-					.html("<b>Testing Demoiselle Mail Componente</b>").importance().high().send();
-
-			List<Message> inbox = Mailbox.get("to@frameworkdemoiselle.gov.br");
-			Message message = inbox.get(0);
-			MimeMultipart multipart = (MimeMultipart) message.getContent();
-			String[] priority = message.getHeader(MailHeader.PRIORITY.headerValue());
-			InternetAddress ia = (InternetAddress) message.getFrom()[0];
-
-			MimeBodyPart part = (MimeBodyPart) multipart.getBodyPart(0);
-			MimeMultipart m = (MimeMultipart) part.getContent();
-			Assert.assertTrue(m.getBodyPart(0).getContentType().startsWith("text/html"));
-			Assert.assertEquals("from@frameworkdemoiselle.gov.br", ia.getAddress());
-			Assert.assertEquals(MessagePriority.HIGH.getPriority(), priority[0]);
-			Assert.assertEquals("<b>Testing Demoiselle Mail Componente</b>", (m.getBodyPart(0).getContent()));
-			Assert.assertEquals(1, inbox.size());
-
-			inbox.clear();
-		} catch (AddressException e) {
-			Assert.fail();
-		} catch (IOException e) {
-			Assert.fail();
-		} catch (MessagingException e) {
-			Assert.fail();
-		}
-	}
-
-	@Test
-	public void sendTextEmailImportanceLowBCCAndCC() {
-		try {
-
-			PowerMock.mockStatic(Beans.class);
-			PowerMock.mockStatic(LoggerProducer.class);
-			EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
-			Logger logger = PowerMock.createMock(Logger.class);
-			logger.debug(EasyMock.anyObject(String.class));
-			EasyMock.expectLastCall().anyTimes();
-			logger.info(EasyMock.anyObject(String.class));
-			EasyMock.expectLastCall().anyTimes();
-			EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
-
-			PowerMock.replayAll();
-
-			new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br")
-					.bcc("bcc@frameworkdemoiselle.gov.br").cc("cc@frameworkdemoiselle.gov.br").body()
-					.text("<b>Testing Demoiselle Mail Componente</b>").importance().low().subject("Subject").send();
-
-			List<Message> inbox = Mailbox.get("to@frameworkdemoiselle.gov.br");
-			Message message = inbox.get(0);
-			MimeMultipart multipart = (MimeMultipart) message.getContent();
-			String[] priority = message.getHeader(MailHeader.PRIORITY.headerValue());
-			InternetAddress internetAddress = (InternetAddress) message.getFrom()[0];
-
-			InternetAddress bcc = (InternetAddress) message.getRecipients(RecipientType.BCC.getRecipientType())[0];
-			InternetAddress cc = (InternetAddress) message.getRecipients(RecipientType.CC.getRecipientType())[0];
-
-			Assert.assertTrue(multipart.getBodyPart(0).getContentType().startsWith("text/plain"));
-			Assert.assertEquals("Subject", message.getSubject());
-			Assert.assertEquals("bcc@frameworkdemoiselle.gov.br", bcc.getAddress());
-			Assert.assertEquals("cc@frameworkdemoiselle.gov.br", cc.getAddress());
-			Assert.assertEquals("from@frameworkdemoiselle.gov.br", internetAddress.getAddress());
-			Assert.assertEquals(MessagePriority.LOW.getPriority(), priority[0]);
-			Assert.assertEquals("<b>Testing Demoiselle Mail Componente</b>", (multipart.getBodyPart(0).getContent()));
-			Assert.assertEquals(1, inbox.size());
-
-			inbox.clear();
-		} catch (AddressException e) {
-			Assert.fail();
-		} catch (IOException e) {
-			Assert.fail();
-		} catch (MessagingException e) {
-			Assert.fail();
-		}
-
-	}
-
-	@Test
-	public void sendTextEmailWithAttachment() {
-//		try {
-//
-//			PowerMock.mockStatic(Beans.class);
-//			PowerMock.mockStatic(LoggerProducer.class);
-//			EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
-//			Logger logger = PowerMock.createMock(Logger.class);
-//			logger.debug(EasyMock.anyObject(String.class));
-//			EasyMock.expectLastCall().anyTimes();
-//			logger.info(EasyMock.anyObject(String.class));
-//			EasyMock.expectLastCall().anyTimes();
-//			EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
-//
-//			PowerMock.replayAll();
-//
-//			new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br").body()
-//					.text("Testing Demoiselle Mail Componente").attach()
-//					.url("http://demoiselle.sourceforge.net/infra/1.2.4/images/logo-l.png", "logo.jpg")
-//					.inline()
-//                                        .subject("Subject")
-//                                        .send();
-//
-//			List<Message> inbox = Mailbox.get("to@frameworkdemoiselle.gov.br");
-//			Message message = inbox.get(0);
-//			MimeMultipart multipart = (MimeMultipart) message.getContent();
-//			InternetAddress internetAddress = (InternetAddress) message.getFrom()[0];
-//
-//			Assert.assertTrue(multipart.getBodyPart(0).getContentType().startsWith("image/jpeg"));
-//			Assert.assertTrue(multipart.getBodyPart(1).getContentType().startsWith("text/plain"));
-//			Assert.assertEquals("Subject", message.getSubject());
-//			Assert.assertEquals("from@frameworkdemoiselle.gov.br", internetAddress.getAddress());
-//			Assert.assertEquals("Testing Demoiselle Mail Componente", (multipart.getBodyPart(1).getContent()));
-//			Assert.assertEquals(1, inbox.size());
-//
-//			inbox.clear();
-//		} catch (AddressException e) {
-//			Assert.fail();
-//		} catch (IOException e) {
-//			Assert.fail();
-//		} catch (MessagingException e) {
-//			Assert.fail();
-//		}
-
-	}
+    @Test
+    public void checkBodyHtml() {
+        PowerMock.mockStatic(Beans.class);
+        EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+
+        BaseMessage mailMessage = PowerMock.createMock(BaseMessage.class);
+
+        mailMessage.setHtmlBody("BODY HTML");
+
+        PowerMock.expectLastCall().times(1);
+        PowerMock.replayAll();
+
+        Mail mailer = new MailImpl();
+        Whitebox.setInternalState(mailer, BaseMessage.class, mailMessage);
+        mailer.body().html("BODY HTML");
+
+        PowerMock.verifyAll();
+    }
+
+    @Test
+    public void sendHtmlEmailWithImportanceHigh() {
+        try {
+            PowerMock.mockStatic(Beans.class);
+            PowerMock.mockStatic(LoggerProducer.class);
+            EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+            Logger logger = PowerMock.createMock(Logger.class);
+            logger.debug(EasyMock.anyObject(String.class));
+            EasyMock.expectLastCall().anyTimes();
+            logger.info(EasyMock.anyObject(String.class));
+            EasyMock.expectLastCall().anyTimes();
+
+            EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
+            PowerMock.replayAll();
+
+            new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br").body()
+                    .html("<b>Testing Demoiselle Mail Componente</b>").importance().high().send();
+
+            List<Message> inbox = Mailbox.get("to@frameworkdemoiselle.gov.br");
+            Message message = inbox.get(0);
+            MimeMultipart multipart = (MimeMultipart) message.getContent();
+            String[] priority = message.getHeader(MailHeader.PRIORITY.headerValue());
+            InternetAddress ia = (InternetAddress) message.getFrom()[0];
+
+            MimeBodyPart part = (MimeBodyPart) multipart.getBodyPart(0);
+            MimeMultipart m = (MimeMultipart) part.getContent();
+            Assert.assertTrue(m.getBodyPart(0).getContentType().startsWith("text/html"));
+            Assert.assertEquals("from@frameworkdemoiselle.gov.br", ia.getAddress());
+            Assert.assertEquals(MessagePriority.HIGH.getPriority(), priority[0]);
+            Assert.assertEquals("<b>Testing Demoiselle Mail Componente</b>", (m.getBodyPart(0).getContent()));
+            Assert.assertEquals(1, inbox.size());
+
+            inbox.clear();
+        } catch (AddressException e) {
+            Assert.fail();
+        } catch (IOException e) {
+            Assert.fail();
+        } catch (MessagingException e) {
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void sendTextEmailImportanceLowBCCAndCC() {
+        try {
+
+            PowerMock.mockStatic(Beans.class);
+            PowerMock.mockStatic(LoggerProducer.class);
+            EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+            Logger logger = PowerMock.createMock(Logger.class);
+            logger.debug(EasyMock.anyObject(String.class));
+            EasyMock.expectLastCall().anyTimes();
+            logger.info(EasyMock.anyObject(String.class));
+            EasyMock.expectLastCall().anyTimes();
+            EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
+
+            PowerMock.replayAll();
+
+            new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br")
+                    .bcc("bcc@frameworkdemoiselle.gov.br").cc("cc@frameworkdemoiselle.gov.br").body()
+                    .text("<b>Testing Demoiselle Mail Componente</b>").importance().low().subject("Subject").send();
+
+            List<Message> inbox = Mailbox.get("to@frameworkdemoiselle.gov.br");
+            Message message = inbox.get(0);
+            MimeMultipart multipart = (MimeMultipart) message.getContent();
+            String[] priority = message.getHeader(MailHeader.PRIORITY.headerValue());
+            InternetAddress internetAddress = (InternetAddress) message.getFrom()[0];
+
+            InternetAddress bcc = (InternetAddress) message.getRecipients(RecipientType.BCC.getRecipientType())[0];
+            InternetAddress cc = (InternetAddress) message.getRecipients(RecipientType.CC.getRecipientType())[0];
+
+            Assert.assertTrue(multipart.getBodyPart(0).getContentType().startsWith("text/plain"));
+            Assert.assertEquals("Subject", message.getSubject());
+            Assert.assertEquals("bcc@frameworkdemoiselle.gov.br", bcc.getAddress());
+            Assert.assertEquals("cc@frameworkdemoiselle.gov.br", cc.getAddress());
+            Assert.assertEquals("from@frameworkdemoiselle.gov.br", internetAddress.getAddress());
+            Assert.assertEquals(MessagePriority.LOW.getPriority(), priority[0]);
+            Assert.assertEquals("<b>Testing Demoiselle Mail Componente</b>", (multipart.getBodyPart(0).getContent()));
+            Assert.assertEquals(1, inbox.size());
+
+            inbox.clear();
+        } catch (AddressException e) {
+            Assert.fail();
+        } catch (IOException e) {
+            Assert.fail();
+        } catch (MessagingException e) {
+            Assert.fail();
+        }
+
+    }
+
+    @Test
+    public void sendTextEmailWithAttachment() {
+        try {
+
+            PowerMock.mockStatic(Beans.class);
+            PowerMock.mockStatic(LoggerProducer.class);
+            EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
+            Logger logger = PowerMock.createMock(Logger.class);
+            logger.debug(EasyMock.anyObject(String.class));
+            EasyMock.expectLastCall().anyTimes();
+            logger.info(EasyMock.anyObject(String.class));
+            EasyMock.expectLastCall().anyTimes();
+            EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
+
+            PowerMock.replayAll();
+
+            new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br").body()
+                    .text("Testing Demoiselle Mail Componente").attach()
+                    .url("http://www.frameworkdemoiselle.gov.br/ultimas-noticias/chancelaSerpro.jpg", "logo.jpg")
+                    .inline().subject("Subject").send();
+
+            List<Message> inbox = Mailbox.get("to@frameworkdemoiselle.gov.br");
+            Message message = inbox.get(0);
+            MimeMultipart multipart = (MimeMultipart) message.getContent();
+            InternetAddress internetAddress = (InternetAddress) message.getFrom()[0];
+
+            Assert.assertTrue(multipart.getBodyPart(0).getContentType().startsWith("image/jpeg"));
+            Assert.assertTrue(multipart.getBodyPart(1).getContentType().startsWith("text/plain"));
+            Assert.assertEquals("Subject", message.getSubject());
+            Assert.assertEquals("from@frameworkdemoiselle.gov.br", internetAddress.getAddress());
+            Assert.assertEquals("Testing Demoiselle Mail Componente", (multipart.getBodyPart(1).getContent()));
+            Assert.assertEquals(1, inbox.size());
+
+            inbox.clear();
+        } catch (AddressException e) {
+            Assert.fail();
+        } catch (IOException e) {
+            Assert.fail();
+        } catch (MessagingException e) {
+            Assert.fail();
+        }
+
+    }
 }
