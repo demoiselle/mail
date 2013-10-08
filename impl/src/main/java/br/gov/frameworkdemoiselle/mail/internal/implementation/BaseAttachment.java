@@ -44,68 +44,75 @@ import br.gov.frameworkdemoiselle.mail.internal.Header;
 import br.gov.frameworkdemoiselle.mail.internal.enums.ContentDisposition;
 
 public class BaseAttachment implements Attachment {
-    private String fileName;
-    private String mimeType;
-    private ContentDisposition contentDisposition;
-    private Collection<Header> headers = new ArrayList<Header>();
-    private byte[] bytes;
 
-    public BaseAttachment(String fileName, ContentDisposition contentDisposition, byte[] bytes) {
-        this();
-        this.fileName = fileName;
-        this.contentDisposition = contentDisposition;
-        this.bytes = bytes;
-    }
+	private static final long serialVersionUID = 1L;
 
-    public BaseAttachment(String fileName, ContentDisposition contentDisposition, byte[] bytes, String contentClass) {
-        this(fileName, contentDisposition, bytes);
-        this.addHeader(new Header("Content-Class", contentClass));
-    }
+	private String fileName;
 
-    public BaseAttachment() {
-    }
+	private String mimeType;
 
-    public String getFileName() {
-        return fileName;
-    }
+	private ContentDisposition contentDisposition;
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+	private Collection<Header> headers = new ArrayList<Header>();
 
-    public String getMimeType() {
-        return mimeType;
-    }
+	private byte[] bytes;
 
-    public void setMimeType(String mimeType) {
-        this.mimeType = mimeType;
-    }
+	public BaseAttachment(String fileName, ContentDisposition contentDisposition, byte[] bytes) {
+		this();
+		this.fileName = fileName;
+		this.contentDisposition = contentDisposition;
+		this.bytes = bytes;
+	}
 
-    public ContentDisposition getContentDisposition() {
-        return contentDisposition;
-    }
+	public BaseAttachment(String fileName, ContentDisposition contentDisposition, byte[] bytes, String contentClass) {
+		this(fileName, contentDisposition, bytes);
+		this.addHeader(new Header("Content-Class", contentClass));
+	}
 
-    public void setContentDisposition(ContentDisposition contentDisposition) {
-        this.contentDisposition = contentDisposition;
-    }
+	public BaseAttachment() {
+	}
 
-    public Collection<Header> getHeaders() {
-        return headers;
-    }
+	public String getFileName() {
+		return fileName;
+	}
 
-    public void addHeader(Header header) {
-        headers.add(header);
-    }
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
-    public void addHeaders(Collection<Header> headers) {
-        headers.addAll(headers);
-    }
+	public String getMimeType() {
+		return mimeType;
+	}
 
-    public byte[] getBytes() {
-        return bytes;
-    }
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
+	}
 
-    public void setBytes(byte[] bytes) {
-        this.bytes = bytes;
-    }
+	public ContentDisposition getContentDisposition() {
+		return contentDisposition;
+	}
+
+	public void setContentDisposition(ContentDisposition contentDisposition) {
+		this.contentDisposition = contentDisposition;
+	}
+
+	public Collection<Header> getHeaders() {
+		return headers;
+	}
+
+	public void addHeader(Header header) {
+		headers.add(header);
+	}
+
+	public void addHeaders(Collection<Header> headers) {
+		headers.addAll(headers);
+	}
+
+	public byte[] getBytes() {
+		return bytes;
+	}
+
+	public void setBytes(byte[] bytes) {
+		this.bytes = bytes;
+	}
 }

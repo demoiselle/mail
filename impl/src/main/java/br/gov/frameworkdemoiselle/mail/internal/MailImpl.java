@@ -51,14 +51,16 @@ import br.gov.frameworkdemoiselle.util.Beans;
 
 public class MailImpl implements Mail {
 
+	private static final long serialVersionUID = 1L;
+
 	private BaseMessage emailMessage = new BaseMessage();
-	
+
 	private Config config;
 
 	public MailImpl() {
 		config = Beans.getReference(Config.class);
 	}
-	
+
 	public Mail from(String address) {
 		emailMessage.addFromAddress(MailUtil.getInternetAddress(address));
 		return this;

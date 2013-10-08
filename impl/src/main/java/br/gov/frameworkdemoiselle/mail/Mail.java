@@ -37,6 +37,7 @@
 package br.gov.frameworkdemoiselle.mail;
 
 import java.io.File;
+import java.io.Serializable;
 
 import javax.mail.internet.InternetAddress;
 
@@ -44,15 +45,16 @@ import br.gov.frameworkdemoiselle.mail.internal.BaseMessage;
 
 /**
  * Base interface for creating and sending email messages.
- *
+ * 
  * @author CETEC
  */
-public interface Mail {
+public interface Mail extends Serializable {
 
 	/**
 	 * Add a FROM address to the message.
 	 * 
-	 * @param address E-mail address.
+	 * @param address
+	 *            E-mail address.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail from(String address);
@@ -60,8 +62,10 @@ public interface Mail {
 	/**
 	 * Add a FROM address to the message.
 	 * 
-	 * @param address E-mail address.
-	 * @param name Personal name.
+	 * @param address
+	 *            E-mail address.
+	 * @param name
+	 *            Personal name.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail from(String address, String name);
@@ -69,7 +73,8 @@ public interface Mail {
 	/**
 	 * Add a FROM address to the message.
 	 * 
-	 * @param E-mail {@link InternetAddress}.
+	 * @param E
+	 *            -mail {@link InternetAddress}.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail from(InternetAddress address);
@@ -77,22 +82,26 @@ public interface Mail {
 	/**
 	 * Add a REPLY TO address to the message.
 	 * 
-	 * @param address E-mail address.
+	 * @param address
+	 *            E-mail address.
 	 */
 	public Mail replyTo(String address);
 
 	/**
 	 * Add a REPLY TO address to the message.
 	 * 
-	 * @param address E-mail address.
-	 * @param name Personal name.
+	 * @param address
+	 *            E-mail address.
+	 * @param name
+	 *            Personal name.
 	 */
 	public Mail replyTo(String address, String name);
 
 	/**
 	 * Add a REPLY TO address to the message.
 	 * 
-	 * @param E-mail {@link InternetAddress}.
+	 * @param E
+	 *            -mail {@link InternetAddress}.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail replyTo(InternetAddress emailAddress);
@@ -100,7 +109,8 @@ public interface Mail {
 	/**
 	 * Add a TO address to the message.
 	 * 
-	 * @param address E-mail address.
+	 * @param address
+	 *            E-mail address.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail to(String address);
@@ -108,8 +118,10 @@ public interface Mail {
 	/**
 	 * Add a TO address to the message.
 	 * 
-	 * @param address E-mail address.
-	 * @param name Personal name.
+	 * @param address
+	 *            E-mail address.
+	 * @param name
+	 *            Personal name.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail to(String address, String name);
@@ -117,7 +129,8 @@ public interface Mail {
 	/**
 	 * Add a to address to the message.
 	 * 
-	 * @param address E-mail {@link InternetAddress}.
+	 * @param address
+	 *            E-mail {@link InternetAddress}.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail to(InternetAddress address);
@@ -125,7 +138,8 @@ public interface Mail {
 	/**
 	 * Add a Carbon Copy (CC) address to the message.
 	 * 
-	 * @param address E-mail address.
+	 * @param address
+	 *            E-mail address.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail cc(String address);
@@ -133,8 +147,10 @@ public interface Mail {
 	/**
 	 * Add a Carbon Copy (CC) address to the message.
 	 * 
-	 * @param address E-mail address.
-	 * @param name Personal name.
+	 * @param address
+	 *            E-mail address.
+	 * @param name
+	 *            Personal name.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail cc(String address, String name);
@@ -142,7 +158,8 @@ public interface Mail {
 	/**
 	 * Add a Carbon Copy (CC) address to the message.
 	 * 
-	 * @param address E-mail {@link InternetAddress}.
+	 * @param address
+	 *            E-mail {@link InternetAddress}.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail cc(InternetAddress address);
@@ -150,7 +167,8 @@ public interface Mail {
 	/**
 	 * Add a Blind Carbon Copy (BCC) address to the message.
 	 * 
-	 * @param address E-mail address.
+	 * @param address
+	 *            E-mail address.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail bcc(String address);
@@ -158,8 +176,10 @@ public interface Mail {
 	/**
 	 * Add a Blind Carbon Copy (BCC) address to the message.
 	 * 
-	 * @param address E-mail address.
-	 * @param name Personal name.
+	 * @param address
+	 *            E-mail address.
+	 * @param name
+	 *            Personal name.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail bcc(String address, String name);
@@ -167,7 +187,8 @@ public interface Mail {
 	/**
 	 * Add a Blind Carbon Copy (BCC) address to the message.
 	 * 
-	 * @param address E-mail {@link InternetAddress}.
+	 * @param address
+	 *            E-mail {@link InternetAddress}.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail bcc(InternetAddress address);
@@ -182,7 +203,8 @@ public interface Mail {
 	/**
 	 * Add a delivery receipt "Return-Receipt-To".
 	 * 
-	 * @param address E-mail address.
+	 * @param address
+	 *            E-mail address.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail deliveryReceipt(String address);
@@ -190,7 +212,8 @@ public interface Mail {
 	/**
 	 * Add a read receipt "Disposition-Notification-To".
 	 * 
-	 * @param address E-mail address.
+	 * @param address
+	 *            E-mail address.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail readReceipt(String address);
@@ -198,7 +221,8 @@ public interface Mail {
 	/**
 	 * Set e-mail's subject.
 	 * 
-	 * @param value Subject value.
+	 * @param value
+	 *            Subject value.
 	 * @return ${@link Mail} instance.
 	 */
 	public Mail subject(String value);
@@ -263,7 +287,8 @@ public interface Mail {
 		/**
 		 * Adds the given file as attachment to the message.
 		 * 
-		 * @param file File.
+		 * @param file
+		 *            File.
 		 * @return ${@link Disposition} instance.
 		 */
 		Disposition file(File file);
@@ -271,7 +296,8 @@ public interface Mail {
 		/**
 		 * Adds a file based on the given filename.
 		 * 
-		 * @param fileName File name.
+		 * @param fileName
+		 *            File name.
 		 * @return ${@link Disposition} instance.
 		 */
 		Disposition file(String fileName);
@@ -279,8 +305,10 @@ public interface Mail {
 		/**
 		 * Adds a file based on the given URL.
 		 * 
-		 * @param url URL holding the file's content.
-		 * @param fileName Name that will be used as filename.
+		 * @param url
+		 *            URL holding the file's content.
+		 * @param fileName
+		 *            Name that will be used as filename.
 		 * @return ${@link Disposition} instance.
 		 */
 		Disposition url(String url, String fileName);
@@ -288,7 +316,7 @@ public interface Mail {
 	}
 
 	/**
-	 * Convenience interface used to define the  attachment's disposition in the message.
+	 * Convenience interface used to define the attachment's disposition in the message.
 	 * 
 	 * @author CETEC
 	 */
@@ -319,7 +347,8 @@ public interface Mail {
 		/**
 		 * Define the content as a plain text.
 		 * 
-		 * @param text Text.
+		 * @param text
+		 *            Text.
 		 * @return ${@link Mail} instance.
 		 */
 		Mail text(String text);
@@ -327,7 +356,8 @@ public interface Mail {
 		/**
 		 * Define the content as an HTML.
 		 * 
-		 * @param html HTML.
+		 * @param html
+		 *            HTML.
 		 * @return ${@link Mail} instance.
 		 */
 		Mail html(String html);

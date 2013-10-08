@@ -60,7 +60,6 @@ import br.gov.frameworkdemoiselle.mail.internal.enums.MailHeader;
 import br.gov.frameworkdemoiselle.mail.internal.enums.MessagePriority;
 import br.gov.frameworkdemoiselle.mail.internal.enums.RecipientType;
 import br.gov.frameworkdemoiselle.mail.util.MailUtil;
-import br.gov.frameworkdemoiselle.util.Beans;
 import br.gov.frameworkdemoiselle.util.Strings;
 
 public class Dispatcher {

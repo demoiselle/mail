@@ -47,6 +47,8 @@ import br.gov.frameworkdemoiselle.mail.internal.enums.ContentDisposition;
 
 public class URLAttachment extends BaseAttachment {
 
+	private static final long serialVersionUID = 1L;
+
 	public URLAttachment(String url, String fileName, ContentDisposition contentDisposition) {
 		super();
 

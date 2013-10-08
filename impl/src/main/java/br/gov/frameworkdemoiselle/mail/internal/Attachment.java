@@ -36,6 +36,8 @@
  */
 package br.gov.frameworkdemoiselle.mail.internal;
 
+import java.io.Serializable;
+
 import br.gov.frameworkdemoiselle.mail.internal.enums.ContentDisposition;
 
 /**
@@ -43,7 +45,7 @@ import br.gov.frameworkdemoiselle.mail.internal.enums.ContentDisposition;
  * 
  * @author CETEC
  */
-public interface Attachment {
+public interface Attachment extends Serializable {
 
 	/**
 	 * Get attachment's MIME type.

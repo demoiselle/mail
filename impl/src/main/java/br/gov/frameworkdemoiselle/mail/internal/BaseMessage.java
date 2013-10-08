@@ -36,6 +36,7 @@
  */
 package br.gov.frameworkdemoiselle.mail.internal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -44,7 +45,9 @@ import javax.mail.internet.InternetAddress;
 
 import br.gov.frameworkdemoiselle.mail.internal.enums.MessagePriority;
 
-public class BaseMessage {
+public class BaseMessage implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Collection<InternetAddress> fromAddresses = new HashSet<InternetAddress>();
 

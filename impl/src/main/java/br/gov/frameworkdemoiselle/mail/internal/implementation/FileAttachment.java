@@ -48,6 +48,8 @@ import br.gov.frameworkdemoiselle.mail.internal.enums.ContentDisposition;
 
 public class FileAttachment extends BaseAttachment {
 
+	private static final long serialVersionUID = 1L;
+
 	public FileAttachment(ContentDisposition contentDisposition, File file) {
 		super();
 		FileDataSource fileDataSource = new FileDataSource(file);
@@ -60,19 +62,19 @@ public class FileAttachment extends BaseAttachment {
 			throw new MailException("Can't create File Attachment", e);
 		}
 	}
-	
-	public byte[] toByteArray(File file)throws IOException{
-        FileInputStream fis = new FileInputStream(file);
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] buf = new byte[1024];
-        try {
-            for (int readNum; (readNum = fis.read(buf)) != -1;) {
-                bos.write(buf, 0, readNum);
-                System.out.println("read " + readNum + " bytes,");
-            }
-        } catch (IOException ex) {
-        }
-        byte[] bytes = bos.toByteArray();
-        return bytes;
+
+	public byte[] toByteArray(File file) throws IOException {
+		FileInputStream fis = new FileInputStream(file);
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		byte[] buf = new byte[1024];
+		try {
+			for (int readNum; (readNum = fis.read(buf)) != -1;) {
+				bos.write(buf, 0, readNum);
+				System.out.println("read " + readNum + " bytes,");
+			}
+		} catch (IOException ex) {
+		}
+		byte[] bytes = bos.toByteArray();
+		return bytes;
 	}
 }
