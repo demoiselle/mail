@@ -40,41 +40,38 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+	<groupId>br.gov.frameworkdemoiselle.component</groupId>
     <artifactId>demoiselle-mail</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.1.0-SNAPSHOT</version>
 
-    <parent>
-        <groupId>br.gov.frameworkdemoiselle.component</groupId>
-        <artifactId>demoiselle-component-parent</artifactId>
-        <version>2.0.6</version>
-    </parent>
+	<parent>
+		<groupId>br.gov.frameworkdemoiselle</groupId>
+		<artifactId>demoiselle-parent</artifactId>
+		<version>9</version>
+		<relativePath>../../internal/parent/demoiselle</relativePath>
+	</parent>
 
     <name>Demoiselle Mail</name>
     <description>Mail Component</description>
-    <url>http://demoiselle.sourceforge.net/component/demoiselle-mail/</url>
-
-    <properties>
-        <category>Utilitários</category>
-        <serverId>demoiselle.sourceforge.net</serverId>
-    </properties>
-
-    <distributionManagement>
-        <site>
-            <id>demoiselle.sourceforge.net</id>
-            <url>${site.shell.url}/${project.artifactId}/${project.version}</url>
-        </site>
-    </distributionManagement>
-
-    <scm>
-        <connection>scm:svn:http://demoiselle.svn.sourceforge.net/svnroot/demoiselle/component/tags/demoiselle-mail-2.0.1</connection>
-        <developerConnection>scm:svn:https://demoiselle.svn.sourceforge.net/svnroot/demoiselle/component/tags/demoiselle-mail-2.0.1</developerConnection>
-        <url>scm:svn:http://demoiselle.svn.sourceforge.net/viewvc/demoiselle/component/tags/demoiselle-mail-2.0.1</url>
-    </scm>
+    <url>http://www.frameworkdemoiselle.gov.br</url>
+    
+    <dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>br.gov.frameworkdemoiselle</groupId>
+				<artifactId>demoiselle-framework-bom</artifactId>
+				<version>${demoiselle.framework.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
+            <version>${mail.version}</version>
         </dependency>
         <dependency>
             <groupId>br.gov.frameworkdemoiselle</groupId>
@@ -83,6 +80,7 @@
         <dependency>
             <groupId>org.jvnet.mock-javamail</groupId>
             <artifactId>mock-javamail</artifactId>
+            <version>${mockjavamail.version}</version>
         </dependency>
         <dependency>
             <groupId>org.easymock</groupId>
@@ -101,15 +99,37 @@
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>demoiselle.sourceforge.net</id>
-            <url>http://demoiselle.sourceforge.net/repository/release</url>
-        </repository>
-        <repository>
-            <id>demoiselle.sourceforge.net-snapshot</id>
-            <url>http://demoiselle.sourceforge.net/repository/snapshot</url>
-        </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>sonatype-nexus-releases</id>
+			<name>Sonatype Nexus Releases</name>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+    
+    <properties>
+		<demoiselle.framework.version>2.4.0</demoiselle.framework.version>
+		<mail.version>1.4.7</mail.version>
+		<mockjavamail.version>1.9</mockjavamail.version>
+        <category>Utilitários</category>
+        <serverId>demoiselle.sourceforge.net</serverId>
+	</properties>
 
 </project>

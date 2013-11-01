@@ -41,7 +41,7 @@
 
 	<groupId>br.gov.frameworkdemoiselle.component</groupId>
 	<artifactId>demoiselle-mail-build</artifactId>
-	<version>2.0.2-SNAPSHOT</version>
+	<version>2.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -59,7 +59,7 @@
 
 	<modules>
 		<module>impl</module>
-		<module>documentation</module>
+		<module>documentation/reference</module>
 	</modules>
 
 	<build>
@@ -78,13 +78,6 @@
 		</plugins>
 	</build>
 
-<distributionManagement>
-		<site>
-			<id>demoiselle.sourceforge.net</id>
-			<url>${site.url}</url>
-		</site>
-	</distributionManagement>
-
 	<scm>
 		<connection>scm:git:git@github.com:demoiselle/${project.alias}.git</connection>
 		<developerConnection>scm:git:git@github.com:demoiselle/${project.alias}.git</developerConnection>
@@ -97,8 +90,32 @@
 			<id>sonatype-nexus-snapshots</id>
 			<name>Sonatype Nexus Snapshots</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>sonatype-nexus-releases</id>
+			<name>Sonatype Nexus Releases</name>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 		</repository>
 	</repositories>
+
+	<distributionManagement>
+		<site>
+			<id>demoiselle.sourceforge.net</id>
+			<url>${site.url}</url>
+		</site>
+	</distributionManagement>
 	
 	<properties>
 		<project.alias>mail</project.alias>

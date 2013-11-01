@@ -411,7 +411,7 @@ public class MailerImplTest {
 
             new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br").body()
                     .text("Testing Demoiselle Mail Componente").attach()
-                    .url("http://www.frameworkdemoiselle.gov.br/ultimas-noticias/chancelaSerpro.jpg", "logo.jpg")
+                    .url("http://upload.wikimedia.org/wikipedia/commons/4/49/Santos_Dumont_Demoiselle.jpg", "logo.jpg")
                     .inline().subject("Subject").send();
 
             List<Message> inbox = Mailbox.get("to@frameworkdemoiselle.gov.br");

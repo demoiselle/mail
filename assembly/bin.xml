@@ -69,8 +69,8 @@ ou escreva para a Fundação do Software Livre (FSF) Inc.,
 				<exclude>*doc*</exclude>
 			</excludes>
 			<binaries>
-				<attachmentClassifier>javadoc</attachmentClassifier>
-				<outputDirectory>${module.artifactId}</outputDirectory>
+<!-- 				<attachmentClassifier>javadoc</attachmentClassifier>
+ -->				<outputDirectory>${module.artifactId}</outputDirectory>
 				<unpack>false</unpack>
 				<includeDependencies>false</includeDependencies>
 			</binaries>
