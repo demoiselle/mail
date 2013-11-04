@@ -39,7 +39,7 @@ ou escreva para a Fundação do Software Livre (FSF) Inc.,
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>demoiselle-mail-reference</artifactId>
-	<version>2.1.0</version>
+	<version>2.1.1-SNAPSHOT</version>
 	<packaging>jdocbook</packaging>
 	
 	<parent>
@@ -76,8 +76,4 @@ ou escreva para a Fundação do Software Livre (FSF) Inc.,
 	<properties>
 		<project.context>components/mail/reference</project.context>
 	</properties>
-
-  <scm>
-    <tag>2.1.0</tag>
-  </scm>
 </project>
