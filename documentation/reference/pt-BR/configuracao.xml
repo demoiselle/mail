@@ -151,7 +151,7 @@
 				adicione a opção
 				<emphasis>frameworkdemoiselle.mail.type=provided</emphasis>
 				. Depois, você deve colocar também a opção
-				<emphasis>frameworkdemoiselle.mail.lookup_class</emphasis>
+				<emphasis>frameworkdemoiselle.mail.mailLookupClass</emphasis>
 				. O valor vai depender de qual servidor você está usando.
 			</para>
 			<para>
