@@ -79,7 +79,7 @@ public class Dispatcher {
 	private BaseMessage message;
 
 	public Dispatcher(Session session, BaseMessage message) {
-		this.logger = LoggerProducer.create(Dispatcher.class);
+		this.logger = LoggerProducer.create(Logger.class);
 		logger.debug("Mail Dispatcher initializing.");
 		this.session = session;
 		this.message = message;
