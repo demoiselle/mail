@@ -50,7 +50,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
-import org.slf4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import br.gov.frameworkdemoiselle.internal.producer.LoggerProducer;
 import br.gov.frameworkdemoiselle.mail.MailException;
@@ -79,8 +80,8 @@ public class Dispatcher {
 	private BaseMessage message;
 
 	public Dispatcher(Session session, BaseMessage message) {
-		this.logger = LoggerProducer.create(Dispatcher.class);
-		logger.debug("Mail Dispatcher initializing.");
+		this.logger = LoggerProducer.create("br.gov.frameworkdemoiselle.mail.internal.Dispatcher");
+		logger.log(Level.FINE, "Mail Dispatcher initializing.");
 		this.session = session;
 		this.message = message;
 		this.initialize();
@@ -100,7 +101,7 @@ public class Dispatcher {
 			Transport.send(mimeMessage);
 			logger.info("Message Sent!");
 		} catch (MessagingException e) {
-			logger.error("Error sending message.", e);
+			logger.log(Level.SEVERE, "Error sending message.", e);
 			throw new SendFailedException("Send Failed", e);
 		}
 	}
@@ -112,7 +113,7 @@ public class Dispatcher {
 	}
 
 	private void setFrom() throws MessagingException {
-		logger.debug("Setting " + message.getFromAddresses().size() + " addresses as 'From'.");
+		logger.log(Level.FINE, "Setting " + message.getFromAddresses().size() + " addresses as 'From'.");
 
 		if (message.getFromAddresses().size() == 1) {
 			mimeMessage.setFrom(message.getFromAddresses().iterator().next());
@@ -122,7 +123,7 @@ public class Dispatcher {
 	}
 
 	private void setTo() throws MessagingException {
-		logger.debug("Setting " + message.getToAddresses().size() + " addresses as 'To'.");
+		logger.log(Level.FINE, "Setting " + message.getToAddresses().size() + " addresses as 'To'.");
 
 		for (InternetAddress address : message.getToAddresses()) {
 			mimeMessage.addRecipient(RecipientType.TO.getRecipientType(), address);
@@ -130,7 +131,7 @@ public class Dispatcher {
 	}
 
 	private void setCc() throws MessagingException {
-		logger.debug("Setting " + message.getCcAddresses().size() + " addresses as 'CC'.");
+		logger.log(Level.FINE, "Setting " + message.getCcAddresses().size() + " addresses as 'CC'.");
 
 		for (InternetAddress address : message.getCcAddresses()) {
 			mimeMessage.addRecipient(RecipientType.CC.getRecipientType(), address);
@@ -138,7 +139,7 @@ public class Dispatcher {
 	}
 
 	private void setBcc() throws MessagingException {
-		logger.debug("Setting " + message.getBccAddresses().size() + " addresses as 'BCC'.");
+		logger.log(Level.FINE , "Setting " + message.getBccAddresses().size() + " addresses as 'BCC'.");
 
 		for (InternetAddress address : message.getBccAddresses()) {
 			mimeMessage.addRecipient(RecipientType.BCC.getRecipientType(), address);
@@ -146,7 +147,7 @@ public class Dispatcher {
 	}
 
 	private void setReplyTo() throws MessagingException {
-		logger.debug("Setting " + message.getReplyToAddresses().size() + " addresses as 'Reply-To'.");
+		logger.log(Level.FINE, "Setting " + message.getReplyToAddresses().size() + " addresses as 'Reply-To'.");
 
 		if (message.getReplyToAddresses().size() > 0) {
 			mimeMessage.setReplyTo(MailUtil.getInternetAddressses(message.getReplyToAddresses()));
@@ -154,7 +155,7 @@ public class Dispatcher {
 	}
 
 	private void setReadReceipt() throws MessagingException {
-		logger.debug("Setting " + message.getReadReceiptAddresses().size() + " addresses as 'Read Receipt'.");
+		logger.log(Level.FINE, "Setting " + message.getReadReceiptAddresses().size() + " addresses as 'Read Receipt'.");
 
 		for (InternetAddress address : message.getReadReceiptAddresses()) {
 			mimeMessage.setHeader(MailHeader.READ_RECIEPT.headerValue(), "<" + address.getAddress() + ">");
@@ -162,7 +163,7 @@ public class Dispatcher {
 	}
 
 	private void setDeliveryReceipt() throws MessagingException {
-		logger.debug("Setting " + message.getDeliveryReceiptAddresses().size() + " addresses as 'Delivery Receipt'.");
+		logger.log(Level.FINE, "Setting " + message.getDeliveryReceiptAddresses().size() + " addresses as 'Delivery Receipt'.");
 
 		for (InternetAddress address : message.getDeliveryReceiptAddresses()) {
 			mimeMessage.setHeader(MailHeader.DELIVERY_RECIEPT.headerValue(), "<" + address.getAddress() + ">");
@@ -170,7 +171,7 @@ public class Dispatcher {
 	}
 
 	private void setImportance() throws MessagingException {
-		logger.debug("Setting message importance:" + message.getImportance().getImportance());
+		logger.log(Level.FINE, "Setting message importance:" + message.getImportance().getImportance());
 
 		if (message.getImportance() != null && message.getImportance() != MessagePriority.NORMAL) {
 			mimeMessage.setHeader(MailHeader.XPRIORITY.headerValue(), message.getImportance().getX_priority());
@@ -180,7 +181,7 @@ public class Dispatcher {
 	}
 
 	private MimeBodyPart createTextBodyPart(String text) {
-		logger.debug("Defining Text Body.");
+		logger.log(Level.FINE, "Defining Text Body.");
 
 		MimeBodyPart textBodyPart = new MimeBodyPart();
 
@@ -195,7 +196,7 @@ public class Dispatcher {
 	}
 
 	private void setContent() throws MessagingException {
-		logger.debug("Setting e-mail content.");
+		logger.log(Level.FINE, "Setting e-mail content.");
 
 		if (!Strings.isEmpty(message.getTextBody())) {
 			multipart.addBodyPart(createTextBodyPart(message.getTextBody()));
@@ -212,7 +213,7 @@ public class Dispatcher {
 	}
 
 	private MimeBodyPart createHTMLBodyPart(String html) {
-		logger.debug("Setting HTML body.");
+		logger.log(Level.FINE, "Setting HTML body.");
 
 		MimeBodyPart htmlBodyPart = new MimeBodyPart();
 		try {
@@ -226,7 +227,7 @@ public class Dispatcher {
 	}
 
 	private void setAttachments() {
-		logger.debug("Setting attachments.");
+		logger.log(Level.FINE, "Setting attachments.");
 
 		for (Attachment attachment : message.getAttachments()) {
 			MimeBodyPart messageBodyPart = new MimeBodyPart();

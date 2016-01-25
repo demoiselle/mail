@@ -38,6 +38,8 @@ package br.gov.frameworkdemoiselle.mail.core;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -55,7 +57,6 @@ import org.powermock.api.easymock.PowerMock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
-import org.slf4j.Logger;
 
 import br.gov.frameworkdemoiselle.internal.producer.LoggerProducer;
 import br.gov.frameworkdemoiselle.mail.Mail;
@@ -309,12 +310,12 @@ public class MailerImplTest {
             PowerMock.mockStatic(LoggerProducer.class);
             EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
             Logger logger = PowerMock.createMock(Logger.class);
-            logger.debug(EasyMock.anyObject(String.class));
-            EasyMock.expectLastCall().anyTimes();
             logger.info(EasyMock.anyObject(String.class));
             EasyMock.expectLastCall().anyTimes();
+            logger.log(EasyMock.anyObject(Level.class), EasyMock.anyObject(String.class));
+            EasyMock.expectLastCall().anyTimes();
 
-            EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
+            EasyMock.expect(LoggerProducer.create("br.gov.frameworkdemoiselle.mail.internal.Dispatcher")).andReturn(logger);
             PowerMock.replayAll();
 
             new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br").body()
@@ -352,11 +353,11 @@ public class MailerImplTest {
             PowerMock.mockStatic(LoggerProducer.class);
             EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
             Logger logger = PowerMock.createMock(Logger.class);
-            logger.debug(EasyMock.anyObject(String.class));
+            logger.log(EasyMock.anyObject(Level.class), EasyMock.anyObject(String.class));
             EasyMock.expectLastCall().anyTimes();
             logger.info(EasyMock.anyObject(String.class));
             EasyMock.expectLastCall().anyTimes();
-            EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
+            EasyMock.expect(LoggerProducer.create("br.gov.frameworkdemoiselle.mail.internal.Dispatcher")).andReturn(logger);
 
             PowerMock.replayAll();
 
@@ -401,17 +402,17 @@ public class MailerImplTest {
             PowerMock.mockStatic(LoggerProducer.class);
             EasyMock.expect(Beans.getReference(Config.class)).andReturn(new Config());
             Logger logger = PowerMock.createMock(Logger.class);
-            logger.debug(EasyMock.anyObject(String.class));
+            logger.log(EasyMock.anyObject(Level.class), EasyMock.anyObject(String.class));
             EasyMock.expectLastCall().anyTimes();
             logger.info(EasyMock.anyObject(String.class));
             EasyMock.expectLastCall().anyTimes();
-            EasyMock.expect(LoggerProducer.create(Dispatcher.class)).andReturn(logger);
+            EasyMock.expect(LoggerProducer.create("br.gov.frameworkdemoiselle.mail.internal.Dispatcher")).andReturn(logger);
 
             PowerMock.replayAll();
 
             new MailImpl().to("to@frameworkdemoiselle.gov.br").from("from@frameworkdemoiselle.gov.br").body()
                     .text("Testing Demoiselle Mail Componente").attach()
-                    .url("http://upload.wikimedia.org/wikipedia/commons/4/49/Santos_Dumont_Demoiselle.jpg", "logo.jpg")
+                    .url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Alberto_Santos-Dumont_with_Demoiselle.jpg/800px-Alberto_Santos-Dumont_with_Demoiselle.jpg", "logo.jpg")
                     .inline().subject("Subject").send();
 
             List<Message> inbox = Mailbox.get("to@frameworkdemoiselle.gov.br");
