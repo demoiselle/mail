@@ -152,9 +152,9 @@ public class MailImpl implements Mail {
 	}
 
 	public BaseMessage send() {
-		Dispatcher dispatcher = new Dispatcher(MailUtil.createSession(config), emailMessage);
 		BaseMessage old = this.emailMessage;
 		try {
+			Dispatcher dispatcher = new Dispatcher(MailUtil.createSession(config), emailMessage);
 			dispatcher.send();
 		} catch (SendFailedException e) {
 			throw new RuntimeException(e);
